@@ -4,9 +4,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"os/user"
 )
 
-const configFileName = ".gatorConfig.json"
+const configFileName = ".gatorconfig.json"
 
 type Config struct {
 	DbUrl           string `json:"db_url"`
@@ -40,12 +41,12 @@ func (c *Config) SetUser(username string) {
 }
 
 func getConfigPath() string {
-	dir, err := os.Getwd()
+	usr, err := user.Current()
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("Error:", err)
 	}
 
-	return dir + "/" + configFileName
+	return usr.HomeDir + "/" + configFileName
 }
 
 func write(cfg *Config) error {
