@@ -49,4 +49,5 @@ func setupHandlers(commands *command.Commands) {
 	commands.Register("register", command.RegisterHandler)
 	commands.Register("reset", command.ResetHandler)
 	commands.Register("users", command.UsersHandler)
+	commands.Register("agg", command.AggHandler)
 }
