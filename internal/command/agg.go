@@ -9,9 +9,6 @@ import (
 )
 
 func AggHandler(s *types.State, cmd Command) error {
-	if cmd.Args == nil || len(cmd.Args) == 0 {
-		//return fmt.Errorf("invalid arguments: agg <url>")
-	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), 60*time.Second)
 	defer cancel()

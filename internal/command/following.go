@@ -3,15 +3,11 @@ package command
 import (
 	"context"
 	"fmt"
+	"github.com/dabates/gator/internal/database"
 	"github.com/dabates/gator/internal/types"
 )
 
-func FollowingHandler(s *types.State, cmd Command) error {
-	user, err := s.Db.GetUser(context.Background(), s.Config.CurrentUserName)
-	if err != nil {
-		return err
-	}
-
+func FollowingHandler(s *types.State, cmd Command, user database.User) error {
 	following, err := s.Db.GetFeedFollowsForUser(context.Background(), user.ID)
 	if err != nil {
 		return err

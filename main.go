@@ -50,8 +50,9 @@ func setupHandlers(commands *command.Commands) {
 	commands.Register("reset", command.ResetHandler)
 	commands.Register("users", command.UsersHandler)
 	commands.Register("agg", command.AggHandler)
-	commands.Register("addfeed", command.AddFeedHandler)
+	//commands.Register("addfeed", command.AddFeedHandler)
+	commands.Register("addfeed", middlewareLoggedIn(command.AddFeedHandler))
 	commands.Register("feeds", command.FeedsHandler)
-	commands.Register("follow", command.FollowHandler)
-	commands.Register("following", command.FollowingHandler)
+	commands.Register("follow", middlewareLoggedIn(command.FollowHandler))
+	commands.Register("following", middlewareLoggedIn(command.FollowingHandler))
 }

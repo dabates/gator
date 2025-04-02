@@ -13,7 +13,7 @@ func ResetHandler(s *types.State, cmd Command) error {
 	}
 
 	s.Config.SetUser("")
-	fmt.Println("All users deleted")
+	fmt.Println("All data deleted")
 
 	return nil
 }

@@ -9,26 +9,20 @@ import (
 	"time"
 )
 
-func AddFeedHandler(s *types.State, cmd Command) error {
+func AddFeedHandler(s *types.State, cmd Command, user database.User) error {
 	if cmd.Args == nil || len(cmd.Args) < 2 {
 		return fmt.Errorf("invalid arguments: addfeed <feedname> <url>")
 	}
 
-	user, err := s.Db.GetUser(context.Background(), s.Config.CurrentUserName)
-	if err != nil {
-		return err
-	}
-
-	params := database.CreateFeedParams{
-		ID:        uuid.New(), //uuid.NullUUID{UUID: uuid.New(), Valid: true},
+	feed, err := s.Db.CreateFeed(context.Background(), database.CreateFeedParams{
+		ID:        uuid.New(),
 		Name:      cmd.Args[0],
 		Url:       cmd.Args[1],
 		UserID:    user.ID,
 		CreatedAt: time.Now(),
 		UpdatedAt: time.Now(),
-	}
+	})
 
-	feed, err := s.Db.CreateFeed(context.Background(), params)
 	if err != nil {
 		return err
 	}
@@ -41,6 +35,7 @@ func AddFeedHandler(s *types.State, cmd Command) error {
 		CreatedAt: time.Now(),
 		UpdatedAt: time.Now(),
 	})
+
 	if err != nil {
 		return err
 	}
