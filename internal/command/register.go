@@ -20,7 +20,7 @@ func RegisterHandler(s *types.State, cmd Command) error {
 	}
 
 	params := database.CreateUserParams{
-		ID:        uuid.NullUUID{UUID: uuid.New(), Valid: true},
+		ID:        uuid.New(),
 		Name:      cmd.Args[0],
 		CreatedAt: time.Now(),
 		UpdatedAt: time.Now(),
