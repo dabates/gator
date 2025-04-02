@@ -33,6 +33,18 @@ func AddFeedHandler(s *types.State, cmd Command) error {
 		return err
 	}
 
+	// create follow record
+	_, err = s.Db.CreateFeedFollows(context.Background(), database.CreateFeedFollowsParams{
+		ID:        uuid.New(),
+		UserID:    user.ID,
+		FeedID:    feed.ID,
+		CreatedAt: time.Now(),
+		UpdatedAt: time.Now(),
+	})
+	if err != nil {
+		return err
+	}
+
 	fmt.Println(feed)
 
 	return nil
