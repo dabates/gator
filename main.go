@@ -51,4 +51,5 @@ func setupHandlers(commands *command.Commands) {
 	commands.Register("users", command.UsersHandler)
 	commands.Register("agg", command.AggHandler)
 	commands.Register("addfeed", command.AddFeedHandler)
+	commands.Register("feeds", command.FeedsHandler)
 }
