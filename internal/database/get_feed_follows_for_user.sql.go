@@ -19,7 +19,7 @@ select feed_follows.id, feed_follows.user_id, feed_follows.feed_id, feed_follows
 from feed_follows
          inner join feeds on feeds.id = feed_follows.feed_id
          inner join users on users.id = feed_follows.user_id
-where feed_follows.user_id  = $1
+where feed_follows.user_id = $1
 `
 
 type GetFeedFollowsForUserRow struct {
