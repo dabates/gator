@@ -10,7 +10,7 @@ import (
 )
 
 const getFeeds = `-- name: GetFeeds :many
-select id, name, url, user_id, created_at, updated_at from feeds
+select id, name, url, user_id, created_at, updated_at, last_fetched_at from feeds
 `
 
 func (q *Queries) GetFeeds(ctx context.Context) ([]Feed, error) {
@@ -29,6 +29,7 @@ func (q *Queries) GetFeeds(ctx context.Context) ([]Feed, error) {
 			&i.UserID,
 			&i.CreatedAt,
 			&i.UpdatedAt,
+			&i.LastFetchedAt,
 		); err != nil {
 			return nil, err
 		}
