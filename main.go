@@ -55,4 +55,5 @@ func setupHandlers(commands *command.Commands) {
 	commands.Register("follow", middlewareLoggedIn(command.FollowHandler))
 	commands.Register("following", middlewareLoggedIn(command.FollowingHandler))
 	commands.Register("unfollow", middlewareLoggedIn(command.UnfollowHandler))
+	commands.Register("browse", command.BrowseHandler)
 }
